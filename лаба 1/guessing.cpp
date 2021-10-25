@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <ctime>
 using namespace std;
 int main()
@@ -9,7 +9,7 @@ int main()
 	int user_number;
 	bool flag = false;
 	cout << "Было загадано целое число от 0 до 100, у вас есть 6 попыток его угадать. Удачи!\n";
-	for (int i = 1; i < 7;)
+	for (int i = 1; i < 7; i++)
 	{
 		cout << "\n" << i << "-ая попытка ввода числа: ";
 		cin >> user_number;
@@ -18,11 +18,6 @@ int main()
 			if (i < 6)
 			{
 				cout << "\nВведенное число меньше загаданного, попробуйте еще раз!\n";
-				i++;
-			}
-			else
-			{
-				i++;
 			}
 		}
 		else if (user_number > random_number) 
@@ -30,16 +25,11 @@ int main()
 			if (i < 6)
 			{
 				cout << "\nВведенное число больше загаданного, попробуйте еще раз!\n";
-				i++;
-			}
-			else
-			{
-				i++;
 			}
 		}
 		else
 		{
-			cout << "Ура! Вы угадали число за отведенное число попыток!\n\n";
+			cout << "\nУра! Вы угадали число за отведенное число попыток!\n\n";
 			flag = true;
 			i = 7;
 		}
