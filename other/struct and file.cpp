@@ -30,15 +30,15 @@ Car create_new_object()
 {
 	SetConsoleCP(1251);
 	Car temp;
-	cout << "Ââåäèòå íàçâàíèå êîìïàíèè: "; cin >> temp.brand;
-	cout << "Ââåäèòå VIN-íîìåð: "; cin >> temp.VIN;
-	cout << "Ââåäèòå íîìåðíîé çíàê: "; cin >> temp.plate;
-	cout << "Ââåäèòå äàòó âûïóñêà: "; cin >> temp.year_of_release; cout << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸: "; cin >> temp.brand;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ VIN-Ð½Ð¾Ð¼ÐµÑ€: "; cin >> temp.VIN;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€Ð½Ð¾Ð¹ Ð·Ð½Ð°Ðº: "; cin >> temp.plate;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ Ð²Ñ‹Ð¿ÑƒÑÐºÐ°: "; cin >> temp.year_of_release; cout << endl;
 	SetConsoleCP(866);
 	return temp;
 }
 
-// ïåðåãðóçêà îïåðàòîðîâ ââîäà è âûâîäà
+// Ð¿ÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ° Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð¾Ð² Ð²Ð²Ð¾Ð´Ð° Ð¸ Ð²Ñ‹Ð²Ð¾Ð´Ð°
 ostream& operator<<(ostream& out, const Car& object)
 {
 	out << object.brand << endl
@@ -70,10 +70,10 @@ int main()
 	file.open(path, fstream::in | fstream::out | fstream::app);
 	Car* array = new Car[count_of_objects];
 
-	cout << "Ôàéë \"" << path << "\" îòêðûò äëÿ çàïèñè è ÷òåíèÿ.\n\n";
-	cout << "1. Çàïèñàòü â ôàéë\n2. Ñ÷èòàòü èç ôàéëà (âûâåäÿ äàííûå)\n" <<
-		"3. Çàïèñàòü îáúåêò ïîñëå àâòîìîáèëÿ ñ óêàçàííûì íîìåðîì (çàïèñàâ äàííûå â ôàéë)\n4. Óäàëèòü ïåðâûå 3 îáúåêòà (ñîõðàíèâ íîâûé íàáîð äàííûõ)\n\n";
-	cout << "Âûáåðèòå äåéñòâèå, ââåäÿ åãî íîìåð: ";
+	cout << "Ð¤Ð°Ð¹Ð» \"" << path << "\" Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð¸ Ñ‡Ñ‚ÐµÐ½Ð¸Ñ.\n\n";
+	cout << "1. Ð—Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð² Ñ„Ð°Ð¹Ð»\n2. Ð¡Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð° (Ð²Ñ‹Ð²ÐµÐ´Ñ Ð´Ð°Ð½Ð½Ñ‹Ðµ)\n" <<
+		"3. Ð—Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð¾Ð±ÑŠÐµÐºÑ‚ Ð¿Ð¾ÑÐ»Ðµ Ð°Ð²Ñ‚Ð¾Ð¼Ð¾Ð±Ð¸Ð»Ñ Ñ ÑƒÐºÐ°Ð·Ð°Ð½Ð½Ñ‹Ð¼ Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð¼ (Ð·Ð°Ð¿Ð¸ÑÐ°Ð² Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð² Ñ„Ð°Ð¹Ð»)\n4. Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿ÐµÑ€Ð²Ñ‹Ðµ 3 Ð¾Ð±ÑŠÐµÐºÑ‚Ð° (ÑÐ¾Ñ…Ñ€Ð°Ð½Ð¸Ð² Ð½Ð¾Ð²Ñ‹Ð¹ Ð½Ð°Ð±Ð¾Ñ€ Ð´Ð°Ð½Ð½Ñ‹Ñ…)\n\n";
+	cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ, Ð²Ð²ÐµÐ´Ñ ÐµÐ³Ð¾ Ð½Ð¾Ð¼ÐµÑ€: ";
 	cin >> command;
 	cout << endl;
 	switch (command)
@@ -81,23 +81,23 @@ int main()
 	case 1:
 		if (!file.is_open())
 		{
-			cout << "Îøèáêà îòêðûòèÿ ôàéëà.\n\n";
+			cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñ„Ð°Ð¹Ð»Ð°.\n\n";
 		}
 		else
 		{
 			do
 			{
-				cout << "Ââåäèòå êîëè÷åñòâî îáúåêòîâ äëÿ çàïèñè â ôàéë: ";
+				cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð² Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð² Ñ„Ð°Ð¹Ð»: ";
 				cin >> count_of_objects;
 			} while (count_of_objects < 1);
 			cout << endl;
-			create_objects(array, count_of_objects); // ñîçäàíèå îáúåêòîâ â êîëè÷åñòâå count_of_objects
+			create_objects(array, count_of_objects); // ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð² Ð² ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ðµ count_of_objects
 			for (int i = 0; i < count_of_objects; i++)
 			{
-				file << array[i] << endl; // çàïèñü ýòèõ îáúåêòîâ â ôàéë
+				file << array[i] << endl; // Ð·Ð°Ð¿Ð¸ÑÑŒ ÑÑ‚Ð¸Ñ… Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð² Ð² Ñ„Ð°Ð¹Ð»
 			}
-			cout << "Çàïèñàííûå äàííûå:\n\n";
-			print_info(array, count_of_objects); // âûâîä â êîíñîëü çàïèñàííûõ äàííûõ äëÿ ïðîâåðêè
+			cout << "Ð—Ð°Ð¿Ð¸ÑÐ°Ð½Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ:\n\n";
+			print_info(array, count_of_objects); // Ð²Ñ‹Ð²Ð¾Ð´ Ð² ÐºÐ¾Ð½ÑÐ¾Ð»ÑŒ Ð·Ð°Ð¿Ð¸ÑÐ°Ð½Ð½Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸
 			file.close();
 		}
 		break;
@@ -143,7 +143,7 @@ int main()
 		}
 		file.close();
 		file.open(path, fstream::in | fstream::out | std::ios::trunc);
-		cout << "Ââåäèòå íîìåð àâòîìîáèëÿ, ïîñëå êîòîðîãî íóæíî äîáàèâòü íîâûé îáúåêò: "; cin >> plate;
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ð°Ð²Ñ‚Ð¾Ð¼Ð¾Ð±Ð¸Ð»Ñ, Ð¿Ð¾ÑÐ»Ðµ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ð´Ð¾Ð±Ð°Ð¸Ð²Ñ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ð¹ Ð¾Ð±ÑŠÐµÐºÑ‚: "; cin >> plate;
 		cout << endl << endl;
 		add_after_plate(array, count_of_objects, plate);
 		for (int i = 0; i < count_of_objects; i++)
@@ -154,7 +154,7 @@ int main()
 		break;
 
 	case 4:
-		cout << "Óäàëåíèå ïåðâûõ 3-õ îáúåêòîâ è çàïèñü íîâûõ äàííûõ â ôàéë.\n\n";
+		cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ñ… 3-Ñ… Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð² Ð¸ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð½Ð¾Ð²Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð² Ñ„Ð°Ð¹Ð».\n\n";
 		while (!file.eof())
 		{
 			Car temp;
@@ -165,7 +165,6 @@ int main()
 			{
 				break;
 			}
-
 			temp2.brand = temp.brand;
 			temp2.VIN = temp.VIN;
 			temp2.plate = temp.plate;
@@ -184,7 +183,7 @@ int main()
 		break;
 
 	default:
-		cout << "Ïîïûòêà íåïëîõàÿ, íî ÿ íå çíàþ òàêóþ êîìàíäó. Óäà÷è :)\n\n";
+		cout << "ÐŸÐ¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð½ÐµÐ¿Ð»Ð¾Ñ…Ð°Ñ, Ð½Ð¾ Ñ Ð½Ðµ Ð·Ð½Ð°ÑŽ Ñ‚Ð°ÐºÑƒÑŽ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñƒ. Ð£Ð´Ð°Ñ‡Ð¸ :)\n\n";
 		break;
 	}
 	print_info(array, count_of_objects);
@@ -209,7 +208,7 @@ void print_info(const Car* array, const int size)
 			<< "Year of release: " << array[i].year_of_release << endl << endl;
 	}
 }
-void append(Car*& array, int& array_size, Car other) // äîáàâëåíèå íîâîãî îáúåêòà â êîíåö ìàññèâà
+void append(Car*& array, int& array_size, Car other) // Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° Ð² ÐºÐ¾Ð½ÐµÑ† Ð¼Ð°ÑÑÐ¸Ð²Ð°
 {
 	Car* temp = new Car[array_size + 1];
 	for (int i = 0; i < array_size; i++)
@@ -224,7 +223,7 @@ void append(Car*& array, int& array_size, Car other) // äîáàâëåíèå íîâîãî îáúåêò
 	array = temp;
 	array_size++;
 }
-void create_objects(Car*& array, const int size) // ñîçäàíèå size îáúåêòîâ
+void create_objects(Car*& array, const int size) // ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ðµ size Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð²
 {
 	Car* new_arr = new Car[size];
 	for (int i = 0; i < size; i++)
@@ -234,7 +233,7 @@ void create_objects(Car*& array, const int size) // ñîçäàíèå size îáúåêòîâ
 	delete[] array;
 	array = new_arr;
 }
-void delete_first_three_objects(Car*& array, int& size) // óäàëåíèå ïåðâûõ 3-õ ýëåìåíòîâ â ìàññèâå
+void delete_first_three_objects(Car*& array, int& size) // ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ñ… 3-Ñ… ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð¼Ð°ÑÑÐ¸Ð²Ðµ
 {
 	Car* new_arr = new Car[size - 3];
 	for (int i = 0; i < size - 3; i++)
@@ -249,20 +248,20 @@ void add_after_plate(Car*& array, int& size, const string value)
 {
 	Car* new_arr = new Car[size + 1];
 	int i = 0, index = 0;
-	bool is_found = false; // íàéäåí ëè íóæíûé çíàê?
+	bool is_found = false; // Ð½Ð°Ð¹Ð´ÐµÐ½ Ð»Ð¸ Ð½ÑƒÐ¶Ð½Ñ‹Ð¹ Ð·Ð½Ð°Ðº?
 	while (i < size && !is_found)
 	{
 		if (array[i].plate == value)
 		{
-			index = i; // åñëè äà - çàïîìèíàåòñÿ èíäåêñ
-			is_found = true; // è âûõîä èç öèêëà 
+			index = i; // ÐµÑÐ»Ð¸ Ð´Ð° - Ð·Ð°Ð¿Ð¾Ð¼Ð¸Ð½Ð°ÐµÑ‚ÑÑ Ð¸Ð½Ð´ÐµÐºÑ
+			is_found = true; // Ð¸ Ð²Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ñ†Ð¸ÐºÐ»Ð° 
 		}
 		i++;
 	}
 
 	if (!is_found)
 	{
-		cout << "\nÀâòîìîáèëÿ ñ òàêèì íîìåðîì íåò.\n\n";
+		cout << "\nÐÐ²Ñ‚Ð¾Ð¼Ð¾Ð±Ð¸Ð»Ñ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð½Ð¾Ð¼ÐµÑ€Ð¾Ð¼ Ð½ÐµÑ‚.\n\n";
 	}
 	else
 	{
@@ -274,7 +273,7 @@ void add_after_plate(Car*& array, int& size, const string value)
 		new_arr[index + 1] = create_new_object();
 		for (int i = index + 2; i < size; i++)
 		{
-			new_arr[i] = array[i - 1]; // çàïîëíÿåòñÿ ìàññèâ ñ äîáàâëåíèåì íîâîãî îáúåêòà ïî íàéäåííîìó èíäåêñó 
+			new_arr[i] = array[i - 1]; // Ð·Ð°Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ÑÑ Ð¼Ð°ÑÑÐ¸Ð² Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸ÐµÐ¼ Ð½Ð¾Ð²Ð¾Ð³Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° Ð¿Ð¾ Ð½Ð°Ð¹Ð´ÐµÐ½Ð½Ð¾Ð¼Ñƒ Ð¸Ð½Ð´ÐµÐºÑÑƒ 
 		}
 		delete[] array;
 		array = new_arr;
