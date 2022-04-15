@@ -20,6 +20,7 @@ public:
 	void print_tree(int);
 	void delete_tree() { delete this; }
 	void insert(T);
+	void erase(T);
 	Tree<T>* get_left();
 	Tree<T>* get_right();
 	Tree<T>* get_parent();
@@ -36,6 +37,77 @@ private:
 	Tree<T>* parent;
 	T data;
 };
+
+template<class T>
+void Tree<T>::erase(T data)
+{
+	Tree<T>* to_erase = this->find(data);
+	Tree<T>* te_parent = to_erase->parent; // te_parent = to_erase_parent
+	if (to_erase->left == nullptr && to_erase->right == nullptr) // если у удаляемого узла НЕТ потомков
+	{
+		if (te_parent->left == to_erase)
+		{
+			te_parent->left = nullptr;
+			delete to_erase;
+		}
+		else
+		{
+			te_parent->right = nullptr;
+			delete to_erase;
+		}
+	}
+	else if ((to_erase->left != nullptr && to_erase->right == nullptr) || (to_erase->right != nullptr && to_erase->left == nullptr)) // если есть ОДИН потомок
+	{
+		if (to_erase->left == nullptr)
+		{
+			if (to_erase == te_parent->left)
+			{
+				te_parent->left = to_erase->right;
+			}
+			else
+			{
+				te_parent->right = to_erase->right;
+			}
+			to_erase->right->parent = te_parent;
+		}
+		else
+		{
+			if (te_parent->left == to_erase)
+			{
+				te_parent->left = to_erase->left;
+			}
+			else
+			{
+				te_parent->right = to_erase->left;
+			}
+			to_erase->left->parent = te_parent;
+		}
+	}
+	else // если ДВА потомка
+	{
+		Tree<T>* next = to_erase->next();
+		to_erase->data = next->data;
+		if (next == next->parent->left)
+		{
+			next->parent->left = next->right;
+			if (next->right != nullptr)
+			{
+				next->right->parent = next->parent;
+			}
+
+		}
+		else
+		{
+			next->parent->right = next->right;
+			if (next->right != nullptr)
+			{
+				next->right->parent = next->parent;
+			}
+		}
+		delete next;
+	}
+}
+
 
 template<class T>
 void Tree<T>::insert(T data)
@@ -166,14 +238,14 @@ Tree<T>* Tree<T>::copy()
 template<class T>
 void Tree<T>::delete_right()
 {
-	Tree<T>* temp = this->eject_right;
+	Tree<T>* temp = this->eject_right();
 	delete temp;
 }
 
 template<class T>
 void Tree<T>::delete_left()
 {
-	Tree<T>* temp = this->eject_left;
+	Tree<T>* temp = this->eject_left();
 	delete temp;
 }
 
@@ -325,6 +397,7 @@ int main()
 	tree->get_right()->insert_right(18);
 	tree->get_right()->get_right()->insert_left(17);
 	tree->get_right()->get_right()->insert_right(19);
+
 	tree2->insert(4);
 	tree2->insert(2);
 	tree2->insert(1);
@@ -334,6 +407,7 @@ int main()
 	tree2->insert(18);
 	tree2->insert(17);
 	tree2->insert(19);
+	tree2->erase(16);
 
 	tree->direct_way(tree);
 	cout << endl;
@@ -341,8 +415,8 @@ int main()
 	cout << endl;
 	tree->reverse_way(tree);
 	cout << endl << endl;
-	tree->print_tree(2);
 
+	tree->print_tree(2);
 	cout << endl << endl << endl;
 
 	tree2->print_tree(2);
