@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 using namespace std;
 
 template <class T>
@@ -19,10 +19,16 @@ public:
 	void reverse_way(Tree<T>*);
 	void print_tree(int);
 	void delete_tree() { delete this; }
+	//void delete_node(T);
 	Tree<T>* get_left();
 	Tree<T>* get_right();
 	Tree<T>* get_parent();
 	Tree<T>* copy();
+	Tree<T>* find(T);
+	Tree<T>* next();
+	Tree<T>* prev();
+	Tree<T>* find_min();
+	Tree<T>* find_max();
 	
 private:
 	Tree<T>* left;
@@ -30,6 +36,79 @@ private:
 	Tree<T>* parent;
 	T data;
 };
+
+template<class T>
+Tree<T>* Tree<T>::prev()
+{
+	Tree<T>* current = this;
+	if (current->left != nullptr)
+	{
+		return current->left->find_max();
+	}
+	Tree<T>* temp = current->parent;
+	while (temp != nullptr && current == temp->left) // пока текущий узел левый потомок, идем на уровень вверх.
+	{
+		current = temp;
+		temp = temp->parent;
+	}
+	return temp;
+
+}
+
+template<class T>
+Tree<T>* Tree<T>::find(T data)
+{
+	if (this == nullptr || this->data == data)
+	{
+		return this;
+	}
+	else if (data > this->data)
+	{
+		return this->right->find(data);
+	}
+	else 
+	{
+		return this->left->find(data);
+	}
+}
+
+template<class T>
+Tree<T>* Tree<T>::find_max()
+{
+	if (this->right == nullptr)
+	{
+		return this;
+	}
+	return this->right->find_max();
+}
+
+template<class T>
+Tree<T>* Tree<T>::find_min()
+{
+	if (this->left == nullptr)
+	{
+		return this;
+	}
+	return this->left->find_min();
+}
+
+template<class T>
+Tree<T>* Tree<T>::next()
+{
+	Tree<T>* current = this;
+	if (current->right != nullptr)
+	{
+		return current->right->find_min();
+	}
+	Tree<T>* temp = current->parent; // родитель рассматриваемого
+	while (temp != nullptr && current == temp->right) // пока узел - правый потомок, переходим на уровень вверх. Узлом становится родитель предыдущего
+		
+	{
+		current = temp;
+		temp = temp->parent;
+	}
+	return temp;
+}
 
 template<class T>
 Tree<T>* Tree<T>::copy()
@@ -94,7 +173,7 @@ void Tree<T>::print_tree(int level)
 	if (this != nullptr)
 	{
 		this->left->print_tree(level + 1);
-		for (int i = 1; i < level; i++) cout << " ";
+		for (int i = 1; i < level; i++) cout << "  ";
 		cout << this->get_data() << endl;
 		this->right->print_tree(level + 1);
 	}
@@ -200,17 +279,17 @@ T Tree<T>::get_data() {	return data; }
 
 int main()
 {
-	Tree<char>* tree = new Tree<char>('A');
+	Tree<int>* tree = new Tree<int>(10);
 
-	tree->insert_left('B');
-	tree->get_left()->insert_left('D');
-	tree->get_left()->get_left()->insert_left('G');
-	tree->get_left()->insert_right('E');
-	tree->get_left()->get_left()->insert_right('H');
-	tree->insert_right('C');
-	tree->get_right()->insert_right('F');
-	tree->get_right()->get_right()->insert_left('I');
-	tree->get_right()->get_right()->insert_right('J');
+	tree->insert_left(4);
+	tree->get_left()->insert_left(2);
+	tree->get_left()->get_left()->insert_left(1);
+	tree->get_left()->insert_right(5);
+	tree->get_left()->get_left()->insert_right(3);
+	tree->insert_right(16);
+	tree->get_right()->insert_right(18);
+	tree->get_right()->get_right()->insert_left(17);
+	tree->get_right()->get_right()->insert_right(19);
 
 	tree->direct_way(tree);
 	cout << endl;
@@ -219,5 +298,11 @@ int main()
 	tree->reverse_way(tree);
 	cout << endl << endl;
 	tree->print_tree(2);
+	cout << endl << endl << endl;
+
+	Tree<int>* t1 = tree->find(19);
+	//cout << tree->find_min()->get_data();
+	t1->print_tree(2);
+	cout << endl << endl << t1->prev()->get_data();
 	return 0;
 }
