@@ -19,7 +19,7 @@ public:
 	void reverse_way(Tree<T>*);
 	void print_tree(int);
 	void delete_tree() { delete this; }
-	//void delete_node(T);
+	void insert(T);
 	Tree<T>* get_left();
 	Tree<T>* get_right();
 	Tree<T>* get_parent();
@@ -36,6 +36,40 @@ private:
 	Tree<T>* parent;
 	T data;
 };
+
+template<class T>
+void Tree<T>::insert(T data)
+{
+	Tree<T>* current = this;
+	while (current != nullptr)
+	{
+		if (data > current->data)
+		{
+			if (current->right != nullptr)
+			{
+				current = current->right;
+			}
+			else
+			{
+				current->insert_right(data);
+				return;
+			}
+		}
+		else if (data < current->data)
+		{
+			if (current->left != nullptr)
+			{
+				current = current->left;
+			}
+			else
+			{
+				current->insert_left(data);
+				return;
+			}
+		}
+		else return;
+	}
+}
 
 template<class T>
 Tree<T>* Tree<T>::prev()
@@ -280,6 +314,7 @@ T Tree<T>::get_data() {	return data; }
 int main()
 {
 	Tree<int>* tree = new Tree<int>(10);
+	Tree<int>* tree2 = new Tree<int>(10);
 
 	tree->insert_left(4);
 	tree->get_left()->insert_left(2);
@@ -290,6 +325,15 @@ int main()
 	tree->get_right()->insert_right(18);
 	tree->get_right()->get_right()->insert_left(17);
 	tree->get_right()->get_right()->insert_right(19);
+	tree2->insert(4);
+	tree2->insert(2);
+	tree2->insert(1);
+	tree2->insert(5);
+	tree2->insert(3);
+	tree2->insert(16);
+	tree2->insert(18);
+	tree2->insert(17);
+	tree2->insert(19);
 
 	tree->direct_way(tree);
 	cout << endl;
@@ -298,11 +342,13 @@ int main()
 	tree->reverse_way(tree);
 	cout << endl << endl;
 	tree->print_tree(2);
+
 	cout << endl << endl << endl;
 
-	Tree<int>* t1 = tree->find(19);
+	tree2->print_tree(2);
+	//Tree<int>* t1 = tree->find(19);
 	//cout << tree->find_min()->get_data();
-	t1->print_tree(2);
-	cout << endl << endl << t1->prev()->get_data();
+	//t1->print_tree(2);
+	//cout << endl << endl << t1->prev()->get_data();
 	return 0;
 }
