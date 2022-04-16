@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 using namespace std;
 
 template <class T>
@@ -6,10 +7,9 @@ class Tree
 {
 public:
 	Tree(T);
+	Tree() { left = right = parent = nullptr; data = 0; }
 	~Tree();
 	T get_data();
-	Tree<T>* eject_left();
-	Tree<T>* eject_right();
 	void delete_left();
 	void delete_right();
 	void insert_left(T);
@@ -17,10 +17,15 @@ public:
 	void direct_way(Tree<T>*);
 	void symmetric_way(Tree<T>*);
 	void reverse_way(Tree<T>*);
+	void parse(Tree<T>*, list<double>);
 	void print_tree(int);
 	void delete_tree() { delete this; }
 	void insert(T);
 	void erase(T);
+	void add_left(Tree<T>* temp) { left = temp; }
+	void add_right(Tree<T>* temp) { right = temp; }
+	Tree<T>* eject_left();
+	Tree<T>* eject_right();
 	Tree<T>* get_left();
 	Tree<T>* get_right();
 	Tree<T>* get_parent();
@@ -30,6 +35,7 @@ public:
 	Tree<T>* prev();
 	Tree<T>* find_min();
 	Tree<T>* find_max();
+	Tree<T>* balanced(int);
 	
 private:
 	Tree<T>* left;
@@ -37,6 +43,7 @@ private:
 	Tree<T>* parent;
 	T data;
 };
+
 
 template<class T>
 void Tree<T>::erase(T data)
@@ -107,7 +114,6 @@ void Tree<T>::erase(T data)
 		delete next;
 	}
 }
-
 
 template<class T>
 void Tree<T>::insert(T data)
@@ -382,6 +388,36 @@ void Tree<T>::insert_right(T data)
 template<class T>
 T Tree<T>::get_data() {	return data; }
 
+template<class T>
+Tree<T>* Tree<T>::balanced(int count)
+{
+	if (count <= 0)
+	{
+		return nullptr;
+	}
+	T data;
+	cout << "Input data to balanced tree: "; cin >> data;
+	Tree<T>* temp = new Tree<T>(data);
+	temp->add_left(balanced(count / 2));
+	temp->add_right(balanced(count - count / 2 - 1));
+	return temp;
+}
+
+template<class T>
+void Tree<T>::parse(Tree<T>* current, list<double> list)
+{
+	if (current == nullptr)
+	{
+		return;
+	}
+	
+	else
+	{
+		list.push_back(current->get_data());
+		direct_way(current->get_left());
+		direct_way(current->get_right());
+	}
+}
 
 int main()
 {
@@ -418,11 +454,26 @@ int main()
 
 	tree->print_tree(2);
 	cout << endl << endl << endl;
-
 	tree2->print_tree(2);
+
 	//Tree<int>* t1 = tree->find(19);
 	//cout << tree->find_min()->get_data();
 	//t1->print_tree(2);
 	//cout << endl << endl << t1->prev()->get_data();
+
+	int count;
+	cout << "\n\n\n\nInput count of nodes balanced tree: "; cin >> count;
+	cout << endl << endl;
+	Tree<double>* t = new Tree<double>();
+	t = t->balanced(count);
+	t->print_tree(2);
+
+	//cout << "Finding min.. Minimum = ";
+	list<double> nodes_data;
+	t->parse(t, nodes_data);
+	for (auto current : nodes_data)
+	{
+		cout << current << " ";
+	}
 	return 0;
 }
