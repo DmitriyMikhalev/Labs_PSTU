@@ -470,7 +470,7 @@ int main()
 	cout << endl << endl;
 	list<double> nodes_data;
 	t->parse(t, nodes_data);
-	//cout << "\n\n\nhueta " << t->get_data();
+	//cout << "\n\n\nfgdfgd " << t->get_data();
 	auto balanced_tree = new Tree<double>();
 	for (auto current : nodes_data)
 	{
