@@ -2,6 +2,7 @@
 
 int main()
 {
+	setlocale(0, "");
 	Tree<int>* tree2 = new Tree<int>(10);
 
 	tree2->insert(4);
@@ -28,28 +29,35 @@ int main()
 	cout << endl << endl;
 
 	tree2->print_tree(2);
-	cout << endl << endl << endl;
-	tree2->print_tree(2);
 
 	int count;
-	cout << "\n\n\n\nInput count of nodes balanced tree: "; cin >> count;
-	cout << endl << endl;
+	cout << "\n\nInput count of nodes balanced tree: "; cin >> count;
+	cout << endl;
 	Tree<double>* tree = new Tree<double>();
 	tree = tree->balanced(count);
+	
+	cout << "\nbalanced tree: \n\n";
 	tree->print_tree(2);
+	cout << endl;
 
-	cout << endl << endl;
+
 	list<double> nodes_data;
 	tree->parse(tree, nodes_data);
-
-	auto balanced_tree = new Tree<double>();
+	cout << "list of nodes: ";
 	for (auto current : nodes_data)
 	{
-		balanced_tree->insert(current);
+		cout << current << " ";
 	}
 
-	cout << endl << endl;
-	balanced_tree->print_tree(2);
-	cout << "Finding min.. Minimum = " << balanced_tree->find_min()->get_data();
+	cout << "\n\nBinary Search Tree: \n";
+	auto balanced_search_tree = new Tree<double>();
+	for (auto current : nodes_data)
+	{
+		balanced_search_tree->insert(current);
+	}
+
+	cout << endl;
+	balanced_search_tree->print_tree(2);
+	cout << "\n\nFinding min.. Minimum = " << balanced_search_tree->find_min()->get_data() << endl << endl;
 	return 0;
 }
