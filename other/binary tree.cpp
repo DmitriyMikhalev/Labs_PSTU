@@ -37,7 +37,6 @@ public:
 	Tree<T>* find_min();
 	Tree<T>* find_max();
 	Tree<T>* balanced(int);
-
 private:
 	Tree<T>* left;
 	Tree<T>* right;
@@ -470,14 +469,14 @@ int main()
 	}
 
 	cout << "\n\nBinary Search Tree: \n";
-	auto balanced_search_tree = new Tree<double>();
+	auto search_tree = new Tree<double>();
 	for (auto current : nodes_data)
 	{
-		balanced_search_tree->insert(current);
+		search_tree->insert(current);
 	}
 
 	cout << endl;
-	balanced_search_tree->print_tree(2);
-	cout << "\n\nFinding min.. Minimum = " << balanced_search_tree->find_min()->get_data() << endl << endl;
+	search_tree->print_tree(2);
+	cout << "\n\nFinding min.. Minimum = " << search_tree->find_min()->get_data() << endl << endl;
 	return 0;
 }
