@@ -17,7 +17,7 @@ public:
 	void direct_way(Tree<T>*);
 	void symmetric_way(Tree<T>*);
 	void reverse_way(Tree<T>*);
-	void parse(Tree<T>*, list<double>);
+	void parse(Tree<T>*, list<double>&);
 	void print_tree(int);
 	void delete_tree() { delete this; }
 	void insert(T);
@@ -307,21 +307,6 @@ void Tree<T>::reverse_way(Tree<T>* current) // прямой обход: коре
 }
 
 template<class T>
-void Tree<T>::direct_way(Tree<T>* current) // прямой обход: корень -> левый потомок -> правый потомок
-{
-	if (current == nullptr)
-	{
-		return;
-	}
-	else
-	{
-		cout << current->get_data() << " ";
-		direct_way(current->get_left());
-		direct_way(current->get_right());
-	}
-}
-
-template<class T>
 void Tree<T>::symmetric_way(Tree<T>* current) // прямой обход: корень -> левый потомок -> правый потомок
 {
 	if (current == nullptr)
@@ -404,16 +389,30 @@ Tree<T>* Tree<T>::balanced(int count)
 }
 
 template<class T>
-void Tree<T>::parse(Tree<T>* current, list<double> list)
+void Tree<T>::parse(Tree<T>* current, list<double>& list)
 {
 	if (current == nullptr)
 	{
 		return;
 	}
-	
 	else
 	{
 		list.push_back(current->get_data());
+		parse(current->get_left(), list);
+		parse(current->get_right(), list);
+	}
+}
+
+template<class T>
+void Tree<T>::direct_way(Tree<T>* current) // прямой обход: корень -> левый потомок -> правый потомок
+{
+	if (current == nullptr)
+	{
+		return;
+	}
+	else
+	{
+		cout << current->get_data() << " ";
 		direct_way(current->get_left());
 		direct_way(current->get_right());
 	}
@@ -468,12 +467,17 @@ int main()
 	t = t->balanced(count);
 	t->print_tree(2);
 
-	//cout << "Finding min.. Minimum = ";
+	cout << endl << endl;
 	list<double> nodes_data;
 	t->parse(t, nodes_data);
+	//cout << "\n\n\nhueta " << t->get_data();
+	auto balanced_tree = new Tree<double>();
 	for (auto current : nodes_data)
 	{
-		cout << current << " ";
+		balanced_tree->insert(current);
 	}
+	cout << endl << endl;
+	balanced_tree->print_tree(2);
+	cout << "Finding min.. Minimum = " << balanced_tree->find_min()->get_data();
 	return 0;
 }
