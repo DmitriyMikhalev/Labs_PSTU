@@ -239,6 +239,7 @@ void task_3()
 		}
 		vector.insert(it, min);
 	}
+	vector_size++;
 	cout << "Результат задания после добавления на новое место: " << vector;
 }
 
