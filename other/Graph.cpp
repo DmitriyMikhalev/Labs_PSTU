@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 #include <iomanip>
 using namespace std;
@@ -11,6 +11,9 @@ private:
     vector<vector<int>> adjacency_matrix;
     int count_of_vertex;
 public:
+    Graph() : Graph(20)
+    {
+    }
     Graph(const int& count_of_vertex)
     {
         this->count_of_vertex = count_of_vertex;
@@ -23,7 +26,8 @@ public:
             }
         }
     }
-    friend ostream& operator<<(ostream&, const Graph<int>&);
+    template<class T1>
+    friend ostream& operator<<(ostream&, const Graph<T1>&);
     int get_count_vertex() { return count_of_vertex; }
     bool is_full() { return count_of_vertex == vertex_container.size(); }
     bool is_empty() { return vertex_container.size() == 0; }
@@ -129,10 +133,11 @@ public:
         }
         return count;
     }
-    int get_count_edges_not_oriented(){return get_count_edges_oriented()/2;}
+    int get_count_edges_not_oriented(){ return get_count_edges_oriented()/2; }
 };
 
-ostream& operator<<(ostream& out, const Graph<int>& graph)
+template<class T1>
+ostream& operator<<(ostream& out, const Graph<T1>& graph)
 {
     int size = graph.vertex_container.size();
     out << setw(3) <<  "___+";
@@ -155,22 +160,22 @@ int main()
 {
     setlocale(0, "");
     cout << right;
-    Graph<int> graph = Graph<int>(8);
-    for (int i = 0; i < graph.get_count_vertex(); i++)
+    int count, vertex, edge_weight, from_vertex, to_vertex;
+    cout << "Введите количество вершин графа: "; cin >> count;
+    Graph<int> graph(count);
+    for (int i = 0; i < count; ++i)
     {
-        graph.insert_vertex(i);
+        cout << "Введите вершину графа #" << i+1 << ": "; cin >> vertex; graph.insert_vertex(vertex);
     }
-    graph.insert_edge_not_oriented(0, 1, 9);
-    graph.insert_edge_not_oriented(0, 7, 5);
-    vector<int> a = graph.get_neighbours(0);
-    cout << graph << "\n\n";
-    for (auto i : a)
+    cout << "\n\nВведите количество ребер графа: "; cin >> count;
+    for (int i = 0; i < count; ++i)
     {
-        cout << i << " ";
+        cout << "Введите исходную вершину графа #" << i+1 << ": "; cin >> from_vertex;
+        cout << "Введите конечную вершину графа #" << i+1 << ": "; cin >> to_vertex;
+        cout << "Введите вес ребра графа #" << i+1 << ": "; cin >> edge_weight;
+        cout << endl << endl;
+        graph.insert_edge_not_oriented(from_vertex, to_vertex, edge_weight);
     }
-    {
-        cout << " asdsadsadsadsa";
-    }
-
+    cout << graph;
     return 0;
 }
