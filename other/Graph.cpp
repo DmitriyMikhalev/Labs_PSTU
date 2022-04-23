@@ -1,12 +1,15 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <iomanip>
 using namespace std;
+
 
 template<class T>
 class Graph
 {
 private:
+    queue<T> vertex_queue;
     vector<T> vertex_container;
     vector<vector<int>> adjacency_matrix;
     int count_of_vertex;
@@ -134,6 +137,41 @@ public:
         return count;
     }
     int get_count_edges_not_oriented(){ return get_count_edges_oriented()/2; }
+    void parse_deep(T& start_vertex, bool* visited_verts)
+    {
+        cout << "Обработка вершины " << start_vertex << endl;
+        visited_verts[get_vertex_index(start_vertex)] = true;
+        vector<T> neighbours = get_neighbours(start_vertex);
+        for (int i = 0; i < neighbours.size(); ++i)
+        {
+            if (visited_verts[get_vertex_index(neighbours[i])] == 0)
+            {
+                parse_deep(neighbours[i], visited_verts);
+            }
+        }
+    }
+    void parse_wide(T& start_vertex, bool* visited_verts)
+    {
+        if (visited_verts[get_vertex_index(start_vertex)] == false)
+        {
+            vertex_queue.push(start_vertex);
+            cout << "Обработка вершины " << start_vertex << endl;
+            visited_verts[get_vertex_index(start_vertex)] = true;
+        }
+        vector<T> neighbours = get_neighbours(start_vertex);
+        vertex_queue.pop();
+        for (int i = 0; i < neighbours.size(); ++i)
+        {
+            if (visited_verts[get_vertex_index(neighbours[i])] != true)
+            {
+                vertex_queue.push(neighbours[i]);
+                visited_verts[get_vertex_index(neighbours[i])] = true;
+                cout << "Обработка вершины " << neighbours[i] << endl;
+            }
+        }
+        if (vertex_queue.empty()) return;
+        parse_wide(vertex_queue.front(), visited_verts);
+    }
 };
 
 template<class T1>
@@ -160,22 +198,45 @@ int main()
 {
     setlocale(0, "");
     cout << right;
-    int count, vertex, edge_weight, from_vertex, to_vertex;
-    cout << "Введите количество вершин графа: "; cin >> count;
-    Graph<int> graph(count);
-    for (int i = 0; i < count; ++i)
-    {
-        cout << "Введите вершину графа #" << i+1 << ": "; cin >> vertex; graph.insert_vertex(vertex);
-    }
-    cout << "\n\nВведите количество ребер графа: "; cin >> count;
-    for (int i = 0; i < count; ++i)
-    {
-        cout << "Введите исходную вершину графа #" << i+1 << ": "; cin >> from_vertex;
-        cout << "Введите конечную вершину графа #" << i+1 << ": "; cin >> to_vertex;
-        cout << "Введите вес ребра графа #" << i+1 << ": "; cin >> edge_weight;
-        cout << endl << endl;
-        graph.insert_edge_not_oriented(from_vertex, to_vertex, edge_weight);
-    }
+    /*   int count, vertex, edge_weight, from_vertex, to_vertex;
+       for (int i = 0; i < count; ++i)
+       {
+           cout << "Введите вершину графа #" << i+1 << ": "; cin >> vertex; graph.insert_vertex(vertex);
+       }
+       cout << "\n\nВведите количество ребер графа: "; cin >> count;
+       for (int i = 0; i < count; ++i)
+       {
+           cout << "Введите исходную вершину графа #" << i+1 << ": "; cin >> from_vertex;
+           cout << "Введите конечную вершину графа #" << i+1 << ": "; cin >> to_vertex;
+           cout << "Введите вес ребра графа #" << i+1 << ": "; cin >> edge_weight;
+           cout << endl << endl;
+           graph.insert_edge_not_oriented(from_vertex, to_vertex, edge_weight);
+       }
+       cout << graph;
+
+       fill(visited_verts, visited_verts + 20, false);*/
+
+    //graph.parse_deep(index, visited_verts);
+    int index = 3;
+    Graph<int> graph(6);
+    for (int i = 1; i < 7; ++i) graph.insert_vertex(i);
+    graph.insert_edge_not_oriented(4, 3, 3);
+    graph.insert_edge_not_oriented(3, 5, 21);
+    graph.insert_edge_not_oriented(5, 2, 53);
+    graph.insert_edge_not_oriented(2, 6, 45);
+    graph.insert_edge_not_oriented(6, 1, 34);
+    graph.insert_edge_not_oriented(1, 4, 5);
+    graph.insert_edge_not_oriented(1, 3, 18);
+    graph.insert_edge_not_oriented(2, 1, 12);
+    graph.insert_edge_not_oriented(2, 3, 16);
+   // cout << "\n\nStart: "; cin >> index;
+ 
     cout << graph;
+
+    bool* visited_verts = new bool[20];
+    fill(visited_verts, visited_verts + 20, false);
+    graph.parse_wide(index, visited_verts);
+
+    delete[] visited_verts;
     return 0;
 }
