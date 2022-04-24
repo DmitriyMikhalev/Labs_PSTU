@@ -65,7 +65,7 @@ public:
         {
             cout << "Петлю создавать нельзя!\n"; return;
         }
-        if (!(get_vertex_index(vertex_1) != -1 && get_vertex_index(vertex_2) != -1)) // проверка на существование обеих вершин
+        if (!(get_vertex_index(vertex_1) != -1 && get_vertex_index(vertex_2) != -1))    // both vertex exist?
         {
             cout << "Невозможно создать ребро.\n"; return;
         }
@@ -86,7 +86,8 @@ public:
         {
             cout << "Петлю создавать нельзя!\n"; return;
         }
-        if (!(get_vertex_index(vertex_1_from) != -1 && get_vertex_index(vertex_2_to) != -1)) // проверка на существование обеих вершин
+        if (!(get_vertex_index(vertex_1_from) != -1 
+              && get_vertex_index(vertex_2_to) != -1))                                  // both vertex exist?
         {
             cout << "Невозможно создать ребро.\n"; return;
         }
@@ -205,10 +206,10 @@ public:
         weights[start_index] = 0;                                                       // start vertex has weight = 0
         T current_vertex = start_vertex;
 
-        while (!check(weights))                                                // 1 loop = process to 1 vertex
+        while (!check(weights))                                                         // 1 loop = process to 1 vertex
         {
             int current_index = get_vertex_index(current_vertex);
-            neighbours = get_neighbours(current_vertex);                            // vector filled neighbours of current vertex
+            neighbours = get_neighbours(current_vertex);                                // vector filled neighbours of current vertex
             int current_weight = weights[current_index];
             T* closest_neighbour = nullptr;
             int min_weight = 999999;
@@ -224,7 +225,8 @@ public:
                     weights[neighbour_index] = current_weight + neighbour_weight;
                 }
 
-                if (visited_verts[neighbour_index] != true && weights[neighbour_index] < min_weight) // to find closest vertex
+                if (visited_verts[neighbour_index] != true && 
+                    weights[neighbour_index] < min_weight)                              // to find closest vertex
                 {
                     min_weight = weights[neighbour_index];
                     closest_neighbour = &neighbours[i];
