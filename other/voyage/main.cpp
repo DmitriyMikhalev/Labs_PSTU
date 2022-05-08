@@ -10,7 +10,7 @@ int main()
     int count;
     do
     {
-        cout << "Введите количество вершин графа: "; cin >> count;
+        cout << "Input count of graph vertexes: "; cin >> count;
     } while (count <= 0);
     Graph<int> graph(count);
     fill_graph(graph);
