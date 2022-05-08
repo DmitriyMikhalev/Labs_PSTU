@@ -28,11 +28,11 @@ public:
     {
         if (vertex_1 == vertex_2)
         {
-            cout << "Петлю создавать нельзя!\n"; return;
+            cout << "Unable to create a loop!\n"; return;
         }
         if (!(get_vertex_index(vertex_1) != -1 && get_vertex_index(vertex_2) != -1)) // both vertexes exist?
         {
-            cout << "Невозможно создать ребро.\n"; return;
+            cout << "Unable to create an edge.\n"; return;
         }
 
         int index_v1 = get_vertex_index(vertex_1);
@@ -40,7 +40,7 @@ public:
 
         if (adjacency_matrix[index_v1][index_v2] != 0)
         {
-            cout << "Невозможно создать ребро, оно уже есть.\n"; return;
+            cout << "Unable to create an edge, its already exist.\n"; return;
         }
 
         adjacency_matrix[index_v1][index_v2] = adjacency_matrix[index_v2][index_v1] = value;
@@ -49,11 +49,11 @@ public:
     {
         if (vertex_1_from == vertex_2_to)
         {
-            cout << "Петлю создавать нельзя!\n"; return;
+            cout << "Unable to create a loop!\n"; return;
         }
         if (!(get_vertex_index(vertex_1_from) != -1 && get_vertex_index(vertex_2_to) != -1)) // both vertexes exist?
         {
-            cout << "Невозможно создать ребро.\n"; return;
+            cout << "Unable to create an edge.\n"; return;
         }
 
         int index_v1_from = get_vertex_index(vertex_1_from);
@@ -61,7 +61,7 @@ public:
 
         if (adjacency_matrix[index_v1_from][index_v2_to] != 0)
         {
-            cout << "Невозможно создать ребро, оно уже есть.\n"; return;
+            cout << "Unable to create an edge, its already exist.\n"; return;
         }
 
         adjacency_matrix[index_v1_from][index_v2_to] = value;
@@ -100,7 +100,7 @@ public:
             {
                 vertex_queue.push(neighbours[i]);
                 visited_verts[get_vertex_index(neighbours[i])] = true;
-                cout << "Обработка вершины " << neighbours[i] << endl;
+                cout << "Processing vertex " << neighbours[i] << endl;
             }
         }
         if (vertex_queue.empty()) return;
