@@ -391,7 +391,7 @@ void fill_graph(Graph<int>& graph)
     int count, vertex, edge_weight, from_vertex, to_vertex;
     for (int i = 0; i < graph.get_count_vertex(); ++i)
     {
-        cout << "¬ведите вершину графа #" << i + 1 << ": "; cin >> vertex; graph.insert_vertex(vertex);
+        cout << "Input graph vertex #" << i + 1 << ": "; cin >> vertex; graph.insert_vertex(vertex);
     }
 
     int i = 0;
@@ -405,9 +405,9 @@ void fill_graph(Graph<int>& graph)
     case 0:
         while (!correct(graph.get_matrix()))
         {
-            cout << "¬ведите исходную вершину графа #" << i + 1 << ": "; cin >> from_vertex;
-            cout << "¬ведите конечную вершину графа #" << i + 1 << ": "; cin >> to_vertex;
-            cout << "¬ведите вес ребра графа #" << i + 1 << ": "; cin >> edge_weight;
+            cout << "Input start graph vertex #" << i + 1 << ": "; cin >> from_vertex;
+            cout << "Input end graph vertex #" << i + 1 << ": "; cin >> to_vertex;
+            cout << "Input weight of edge #" << i + 1 << ": "; cin >> edge_weight;
             cout << "\n\n";
             graph.insert_edge_not_oriented(from_vertex, to_vertex, edge_weight);
             cout << graph << "\n\n";
@@ -417,9 +417,9 @@ void fill_graph(Graph<int>& graph)
     case 1:
         while (!correct(graph.get_matrix()))
         {
-            cout << "¬ведите исходную вершину графа #" << i + 1 << ": "; cin >> from_vertex;
-            cout << "¬ведите конечную вершину графа #" << i + 1 << ": "; cin >> to_vertex;
-            cout << "¬ведите вес ребра графа #" << i + 1 << ": "; cin >> edge_weight;
+            cout << "Input start graph vertex #" << i + 1 << ": "; cin >> from_vertex;
+            cout << "Input end graph vertex #" << i + 1 << ": "; cin >> to_vertex;
+            cout << "Input weight of edge #" << i + 1 << ": "; cin >> edge_weight;
             cout << "\n\n";
             graph.insert_edge_oriented(from_vertex, to_vertex, edge_weight);
             cout << graph << "\n\n";
