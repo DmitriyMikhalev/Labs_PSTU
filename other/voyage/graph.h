@@ -28,11 +28,11 @@ public:
     {
         if (vertex_1 == vertex_2)
         {
-            cout << "Ïåòëş ñîçäàâàòü íåëüçÿ!\n"; return;
+            cout << "ĞŸĞµÑ‚Ğ»Ñ ÑĞ¾Ğ·Ğ´Ğ°Ğ²Ğ°Ñ‚ÑŒ Ğ½ĞµĞ»ÑŒĞ·Ñ!\n"; return;
         }
-        if (!(get_vertex_index(vertex_1) != -1 && get_vertex_index(vertex_2) != -1)) // ïğîâåğêà íà ñóùåñòâîâàíèå îáåèõ âåğøèí
+        if (!(get_vertex_index(vertex_1) != -1 && get_vertex_index(vertex_2) != -1)) // Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€ĞºĞ° Ğ½Ğ° ÑÑƒÑ‰ĞµÑÑ‚Ğ²Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¾Ğ±ĞµĞ¸Ñ… Ğ²ĞµÑ€ÑˆĞ¸Ğ½
         {
-            cout << "Íåâîçìîæíî ñîçäàòü ğåáğî.\n"; return;
+            cout << "ĞĞµĞ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾ ÑĞ¾Ğ·Ğ´Ğ°Ñ‚ÑŒ Ñ€ĞµĞ±Ñ€Ğ¾.\n"; return;
         }
 
         int index_v1 = get_vertex_index(vertex_1);
@@ -40,7 +40,7 @@ public:
 
         if (adjacency_matrix[index_v1][index_v2] != 0)
         {
-            cout << "Íåâîçìîæíî ñîçäàòü ğåáğî, îíî óæå åñòü.\n"; return;
+            cout << "ĞĞµĞ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾ ÑĞ¾Ğ·Ğ´Ğ°Ñ‚ÑŒ Ñ€ĞµĞ±Ñ€Ğ¾, Ğ¾Ğ½Ğ¾ ÑƒĞ¶Ğµ ĞµÑÑ‚ÑŒ.\n"; return;
         }
 
         adjacency_matrix[index_v1][index_v2] = adjacency_matrix[index_v2][index_v1] = value;
@@ -49,11 +49,11 @@ public:
     {
         if (vertex_1_from == vertex_2_to)
         {
-            cout << "Ïåòëş ñîçäàâàòü íåëüçÿ!\n"; return;
+            cout << "ĞŸĞµÑ‚Ğ»Ñ ÑĞ¾Ğ·Ğ´Ğ°Ğ²Ğ°Ñ‚ÑŒ Ğ½ĞµĞ»ÑŒĞ·Ñ!\n"; return;
         }
-        if (!(get_vertex_index(vertex_1_from) != -1 && get_vertex_index(vertex_2_to) != -1)) // ïğîâåğêà íà ñóùåñòâîâàíèå îáåèõ âåğøèí
+        if (!(get_vertex_index(vertex_1_from) != -1 && get_vertex_index(vertex_2_to) != -1)) // Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€ĞºĞ° Ğ½Ğ° ÑÑƒÑ‰ĞµÑÑ‚Ğ²Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ Ğ¾Ğ±ĞµĞ¸Ñ… Ğ²ĞµÑ€ÑˆĞ¸Ğ½
         {
-            cout << "Íåâîçìîæíî ñîçäàòü ğåáğî.\n"; return;
+            cout << "ĞĞµĞ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾ ÑĞ¾Ğ·Ğ´Ğ°Ñ‚ÑŒ Ñ€ĞµĞ±Ñ€Ğ¾.\n"; return;
         }
 
         int index_v1_from = get_vertex_index(vertex_1_from);
@@ -61,7 +61,7 @@ public:
 
         if (adjacency_matrix[index_v1_from][index_v2_to] != 0)
         {
-            cout << "Íåâîçìîæíî ñîçäàòü ğåáğî, îíî óæå åñòü.\n"; return;
+            cout << "ĞĞµĞ²Ğ¾Ğ·Ğ¼Ğ¾Ğ¶Ğ½Ğ¾ ÑĞ¾Ğ·Ğ´Ğ°Ñ‚ÑŒ Ñ€ĞµĞ±Ñ€Ğ¾, Ğ¾Ğ½Ğ¾ ÑƒĞ¶Ğµ ĞµÑÑ‚ÑŒ.\n"; return;
         }
 
         adjacency_matrix[index_v1_from][index_v2_to] = value;
@@ -73,7 +73,7 @@ public:
     vector<vector<int>> get_matrix();
     /*void parse_deep(T& start_vertex, bool* visited_verts)
     {
-        cout << "Îáğàáîòêà âåğøèíû " << start_vertex << endl;
+        cout << "ĞĞ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ° Ğ²ĞµÑ€ÑˆĞ¸Ğ½Ñ‹ " << start_vertex << endl;
         visited_verts[get_vertex_index(start_vertex)] = true;
         vector<T> neighbours = get_neighbours(start_vertex);
         for (int i = 0; i < neighbours.size(); ++i)
@@ -89,7 +89,7 @@ public:
         if (visited_verts[get_vertex_index(start_vertex)] == false)
         {
             vertex_queue.push(start_vertex);
-            cout << "Îáğàáîòêà âåğøèíû " << start_vertex << endl;
+            cout << "ĞĞ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ° Ğ²ĞµÑ€ÑˆĞ¸Ğ½Ñ‹ " << start_vertex << endl;
             visited_verts[get_vertex_index(start_vertex)] = true;
         }
         vector<T> neighbours = get_neighbours(start_vertex);
@@ -100,7 +100,7 @@ public:
             {
                 vertex_queue.push(neighbours[i]);
                 visited_verts[get_vertex_index(neighbours[i])] = true;
-                cout << "Îáğàáîòêà âåğøèíû " << neighbours[i] << endl;
+                cout << "ĞĞ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ° Ğ²ĞµÑ€ÑˆĞ¸Ğ½Ñ‹ " << neighbours[i] << endl;
             }
         }
         if (vertex_queue.empty()) return;
