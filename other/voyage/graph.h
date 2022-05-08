@@ -30,7 +30,7 @@ public:
         {
             cout << "Петлю создавать нельзя!\n"; return;
         }
-        if (!(get_vertex_index(vertex_1) != -1 && get_vertex_index(vertex_2) != -1)) // проверка на существование обеих вершин
+        if (!(get_vertex_index(vertex_1) != -1 && get_vertex_index(vertex_2) != -1)) // both vertexes exist?
         {
             cout << "Невозможно создать ребро.\n"; return;
         }
@@ -51,7 +51,7 @@ public:
         {
             cout << "Петлю создавать нельзя!\n"; return;
         }
-        if (!(get_vertex_index(vertex_1_from) != -1 && get_vertex_index(vertex_2_to) != -1)) // проверка на существование обеих вершин
+        if (!(get_vertex_index(vertex_1_from) != -1 && get_vertex_index(vertex_2_to) != -1)) // both vertexes exist?
         {
             cout << "Невозможно создать ребро.\n"; return;
         }
@@ -73,7 +73,7 @@ public:
     vector<vector<int>> get_matrix();
     /*void parse_deep(T& start_vertex, bool* visited_verts)
     {
-        cout << "Обработка вершины " << start_vertex << endl;
+        cout << "Processing vertex " << start_vertex << endl;
         visited_verts[get_vertex_index(start_vertex)] = true;
         vector<T> neighbours = get_neighbours(start_vertex);
         for (int i = 0; i < neighbours.size(); ++i)
@@ -89,7 +89,7 @@ public:
         if (visited_verts[get_vertex_index(start_vertex)] == false)
         {
             vertex_queue.push(start_vertex);
-            cout << "Обработка вершины " << start_vertex << endl;
+            cout << "Processing vertex " << start_vertex << endl;
             visited_verts[get_vertex_index(start_vertex)] = true;
         }
         vector<T> neighbours = get_neighbours(start_vertex);
